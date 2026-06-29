@@ -60,7 +60,7 @@ class AddressFST:
                 if c in self.prov_meta]
 
 def load():
-    cache = Path("/root/vn_address/fst_cache.pkl")
+    cache = Path(__file__).resolve().parent / "fst_cache.pkl"
     if cache.exists():
         with open(cache, "rb") as f:
             obj = pickle.load(f)

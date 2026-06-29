@@ -6,7 +6,8 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 import sys
-sys.path.insert(0, "/root/vn_address")
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from normalize_ml import normalize, normalize_batch, warm_up
 from normalizer import get_indexes, get_fst, cache_stats
 
@@ -89,7 +90,7 @@ async def norm_batch(req: BatchReq):
 
 # ── V2 endpoints ──────────────────────────────────────────────────────────────
 import sys as _sys
-_sys.path.insert(0, "/root/vn_address")
+_sys.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parent))
 from normalize_v2 import normalize_v2, normalize_v2_batch
 
 class NReqV2(BaseModel):

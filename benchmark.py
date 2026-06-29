@@ -1,5 +1,6 @@
 import sys, time
-sys.path.insert(0, "/root/vn_address")
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from normalizer import normalize, get_indexes
 get_indexes()
 

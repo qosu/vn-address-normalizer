@@ -7,9 +7,9 @@ from pathlib import Path
 from unidecode import unidecode
 from rapidfuzz import fuzz, process as rf_process
 
-sys.path.insert(0, "/root/vn_address")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-CACHE_DIR = Path("/root/vn_address")
+CACHE_DIR = Path(__file__).resolve().parent
 FST_CACHE = CACHE_DIR / "fst_cache.pkl"
 IDX_CACHE = CACHE_DIR / "idx_cache.pkl"
 

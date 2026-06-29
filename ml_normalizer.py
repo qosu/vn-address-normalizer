@@ -8,8 +8,8 @@ import torch.nn as nn
 from pathlib import Path
 from unidecode import unidecode
 
-MODEL_DIR = Path("/root/vn_address/model_output")
-sys.path.insert(0, "/root/vn_address")
+MODEL_DIR = Path(__file__).resolve().parent / "model_output"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 def slug(s): return unidecode(s).lower().strip()
 

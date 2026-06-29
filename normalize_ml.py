@@ -3,7 +3,8 @@ ML-enhanced normalize — used by api.py, normalize_v2.py, test_regression.py.
 Single source of truth for the ML fallback logic.
 """
 import time, logging, sys
-sys.path.insert(0, "/root/vn_address")
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from normalizer import normalize as _rb_normalize, normalize_batch as _rb_batch
 
 log = logging.getLogger("vn_normalizer")
@@ -17,7 +18,7 @@ def _get_ml():
     if _ml_model is None:
         import importlib.util
         spec = importlib.util.spec_from_file_location(
-            "ml_inference_v3", "/root/vn_address/ml_inference_v3.py")
+            "inference", str(Path(__file__).resolve().parent / "inference.py"))
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
         _ml_model = mod
@@ -60,6 +61,9 @@ def normalize_batch(addresses, top_k: int = 1):
     return [normalize(a, top_k) for a in addresses]
 
 def warm_up():
-    _get_ml()
+    try:
+        _get_ml()
+    except Exception as e:
+        log.warning(f"ML model unavailable (weights not installed): {e}")
     normalize("Phường Tân Định, Quận 1, TP.HCM")
-    log.info("ML warm-up done.")
+    log.info("Warm-up done.")

@@ -4,7 +4,8 @@ Run: python3 test_regression.py
 Must pass before every deploy.
 """
 import sys, json, time
-sys.path.insert(0, "/root/vn_address")
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from normalize_ml import normalize, warm_up
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
