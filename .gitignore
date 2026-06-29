@@ -1,0 +1,44 @@
+# Model weights (host on HuggingFace, not GitHub)
+*.pt
+*.safetensors
+
+# Cache and pickle files
+*.pkl
+*.pyc
+__pycache__/
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+
+# Backup files
+*.bak
+*.bak2
+*.bak3
+
+# Logs and progress
+*.log
+*_progress.json
+
+# Training data (large)
+train.jsonl
+val.jsonl
+*.jsonl.gz
+sample_pairs_2026.jsonl
+thien0291_dataset.json
+
+# Old model versions
+model_v3/
+model_output/
+
+# Raw data files (not needed for inference)
+streets.json
+streets_clean.json
+street_ward_stats.json
+kaggle_dataset/
+kaggle_notebook/
+kaggle_small/
+
+# Deployment
+supervisord.conf
